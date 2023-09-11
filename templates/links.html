@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guy Ashkenazi Profile App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Style the links individually if needed */
+        .linkedin {
+            color: #0077B5; /* LinkedIn blue color */
+        }
+
+        .github {
+            color: #333; /* Dark gray for GitHub */
+        }
+
+        .gitlab {
+            color: #FC6D26; /* GitLab orange color */
+        }
+    </style>
+</head>
+<body>
+    <h1>Guy Ashkenazi Profile App</h1>
+
+    <ul>
+        {% for link in links %}
+        <li>
+            <a href="{{ link.url }}" target="_blank">
+                <img src="{{ link.icon }}" alt="{{ link.label }} Icon">
+                <span class="{{ link.label|lower }}">{{ link.label }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
