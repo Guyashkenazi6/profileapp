@@ -2,11 +2,11 @@ from flask import Flask, render_template
 from pymongo import MongoClient
 
 app = Flask(__name__)
-client = MongoClient('mongodb://mongodb:27017/')
+client = MongoClient('mongodb://mongodb:27017/') 
 db = client['data']
 links_collection = db['data']
 
-# Define a custom filter to zip lists in the template
+# Define a custom filter to zip lists in the templat
 @app.template_filter('zip_lists')
 def zip_lists(a, b):
     return zip(a, b)
