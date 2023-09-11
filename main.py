@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from pymongo import MongoClient
 
 app = Flask(__name__)
-client = MongoClient('mongodb://mongodb:27017/') # Replace with your MongoDB URI
+client = MongoClient('mongodb://mongodb:27017/')
 db = client['data']
 links_collection = db['data']
 
