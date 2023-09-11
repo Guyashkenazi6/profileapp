@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: main
-        image: guyashkenazi/profile-app:lastest
+        image: guyashkenazi/profile-app
         ports:
         - containerPort: 5000
