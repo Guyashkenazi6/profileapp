@@ -5,8 +5,9 @@ metadata:
 spec:
   selector:
     app: main
+    type: LoadBalancer
   ports:
   - name: main-port
     port: 5000
     targetPort: 5000
-type: LoadBalancer
+
