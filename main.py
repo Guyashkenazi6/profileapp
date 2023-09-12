@@ -6,7 +6,7 @@ client = MongoClient('mongodb://mongodb:27017/')
 db = client['data']
 links_collection = db['data']
 
-# Define a custom filter to zip lists in the template
+# Define a custom filter to zip lists in the templateef
 @app.template_filter('zip_lists')
 def zip_lists(a, b):
     return zip(a, b)
