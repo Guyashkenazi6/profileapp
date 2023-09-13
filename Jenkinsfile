@@ -31,9 +31,6 @@ spec:
         }
 
         stage('Build and Push Docker Image') {
-            when {
-                changeset 'main.py'
-            }
             steps {
                 container('dind') {
                     script {
