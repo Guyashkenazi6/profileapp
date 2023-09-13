@@ -8,14 +8,4 @@ spec:
   type: LoadBalancer
   ports:
   - port: 27017
-    targetPort: 27017apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb
-spec:
-  selector:
-    app: mongodb
-  type: LoadBalancer
-  ports:
-  - port: 27017
     targetPort: 27017
