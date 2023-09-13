@@ -6,13 +6,14 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  ingressClassName: nginx
   rules:
-  - http:
+  -  http:
       paths:
-      - path: /cd(/|$)(.*)
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: argocd-server
-            port:
-              number: 80
+        - path: /cd(/|$)(.*)
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: argocd-server
+              port:
+                number: 80
