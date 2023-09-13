@@ -1,2 +1,2 @@
 # profileapp
-![plot](../images/ori.png)
+![plot](../images/ori.jpeg)
