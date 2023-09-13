@@ -29,16 +29,26 @@
       helm install jenkins jenkins/jenkins
       ```
 
-4. **Access Jenkins:**
+...
+
+4. **Expose Jenkins as a LoadBalancer:**
+    ```bash
+    kubectl expose deployment jenkins --type=LoadBalancer --name=jenkins-lb --port=8080
+    ```
+
+5. **Access Jenkins:**
     
-    - Forward the Jenkins service port to your local machine:
+    - Get the external IP address of the Jenkins LoadBalancer:
       ```bash
-      kubectl port-forward svc/jenkins 8080:8080
+      kubectl get svc jenkins-lb
       ```
 
-    - Visit [http://localhost:8080](http://localhost:8080) in your browser.
+    - Once the `EXTERNAL-IP` is assigned, visit `http://[EXTERNAL-IP]:8080` in your browser.
 
-5. **Complete the Jenkins Setup:**
+...
+
+
+6. **Complete the Jenkins Setup:**
 
     - Retrieve the Jenkins unlock key:
       ```bash
