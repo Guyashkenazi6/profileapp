@@ -29,8 +29,6 @@
       helm install jenkins jenkins/jenkins
       ```
 
-...
-
 4. **Expose Jenkins as a LoadBalancer:**
     ```bash
     kubectl expose deployment jenkins --type=LoadBalancer --name=jenkins-lb --port=8080
@@ -44,8 +42,6 @@
       ```
 
     - Once the `EXTERNAL-IP` is assigned, visit `http://[EXTERNAL-IP]:8080` in your browser.
-
-...
 
 
 6. **Complete the Jenkins Setup:**
