@@ -45,11 +45,14 @@ spec:
         stage('Run Tests') {
             steps {
                 container('dind') {
-                    sh 'docker run guyashkenazi/profile-app:latest test_app.py'
+                    script {
+                        echo "Running tests..."
+                        sh 'docker run guyashkenazi/profile-app:latest test_app.py'
+                        echo "Tests completed successfully!"
+                    }
                 }
             }
         }
-
         stage('Push Docker Image') {
             steps {
                 container('dind') {
