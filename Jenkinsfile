@@ -45,7 +45,7 @@ spec:
         stage('Run Tests') {
             steps {
                 container('dind') {
-                    sh 'docker run guyashkenazi/profile-app:latest pytest.py'
+                    sh 'docker run guyashkenazi/profile-app:latest test_app.py'
                 }
             }
         }
