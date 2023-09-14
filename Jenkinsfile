@@ -30,19 +30,34 @@ spec:
             }
         }
 
-        stage('Build and Push Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 container('dind') {
                     script {
                         sh 'dockerd &'
                         sh 'sleep 5'
                         sh 'docker build -t guyashkenazi/profile-app:latest .'
-                        withCredentials([usernamePassword(credentialsId: 'dockerHubCreds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                            sh '''
-                            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                            docker push guyashkenazi/profile-app:latest
-                            '''
-                        }
+                    }
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                container('dind') {
+                    sh 'docker run guyashkenazi/profile-app:latest pytest.py'
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                container('dind') {
+                    withCredentials([usernamePassword(credentialsId: 'dockerHubCreds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh '''
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push guyashkenazi/profile-app:latest
+                        '''
                     }
                 }
             }

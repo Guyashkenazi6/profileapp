@@ -4,16 +4,17 @@ FROM python:3.10
 # Set the working directory inside the container
 WORKDIR /app
 
-RUN pip install flask pymongo 
+# Install required packages
+RUN pip install flask pymongo pytest
 
-# Copy your Python script into the container
+# Copy your Python script and other necessary files into the container
 COPY . /app
 
-# Install any dependencies your script might have
-# For example, if you're using pymongo, you can install it like this:
-# RUN pip install pymongo
-
+# Expose port 5000
 EXPOSE 5000
 
-# Run the Python script
-CMD ["python", "main.py"]
+# Set the default command to execute
+CMD ["main.py"]
+
+# Set the entrypoint as Python
+ENTRYPOINT ["python"]
