@@ -11,7 +11,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /cd/
+      - path: /cd
         pathType: ImplementationSpecific
         backend:
           service:
