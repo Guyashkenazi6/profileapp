@@ -57,18 +57,7 @@ Each link is supplemented with an appropriate logo, fetched dynamically from Mon
 ## 🔗 Links & Resources
 
 - [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [DockerHub Repository](#) *(Link to your DockerHub repository)*
-- [Jenkins CI Dashboard](#) *(Link to your Jenkins Dashboard if publicly accessible)*
-- [ArgoCD Dashboard](#) *(Link to your ArgoCD Dashboard if publicly accessible)*
-
-## 🙏 Acknowledgments
-
-Thanks to everyone who provided support, tools, and feedback throughout the development of this project.
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
+- [DockerHub Repository](https://hub.docker.com/repositories/guyashkenazi)
 ---
 
 🌟 Star this repo if you found it useful! Feedback and PRs are welcomed.
