@@ -1,55 +1,69 @@
-# Jenkins Installation on Google Cloud Kubernetes Cluster
+## install Jenkins instance on Kubernetes cluster
+(based on this page: [Install Jenkins using helm](https://argo-cd.readthedocs.io/en/stable/getting_started/](https://sweetcode.io/how-to-setup-jenkins-ci-cd-pipeline-on-kubernetes-cluster-with-helm/))
 
-## Prerequisites
-- A running Google Cloud Kubernetes Cluster
-- `kubectl` and `gcloud` command-line tools installed
+### Requirements
+- Installed kubectl command-line tool.
+- Connected to a Kubernetes cluster - Have a kubeconfig file (default location is ~/.kube/config).
+- Install helm.
+ 
+### Install Jenkins
+```
+sudo apt install helm
+```
+Add jenkins to your helm repo:
+```
+helm repo add jenkins https://charts.jenkins.io
+```
 
-## Installation Steps
+Update your repo:
+```
+helm repo update
+```
 
-1. **Set up Google Cloud SDK (if not already done):**
-    ```bash
-    gcloud init
-    ```
+Install the official jenkins package:
+```
+helm install myjenkins jenkins/jenkins
+```
 
-2. **Connect to your Kubernetes Cluster:**
-    ```bash
-    gcloud container clusters get-credentials [CLUSTER_NAME] --zone [ZONE]
-    ```
+Get the password:
+```
+kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode
+```
+Get the LoadBalancer ip:
+```
+kubectl get svc --namespace=...('default' is the default namespace for the installation) 
+```
 
-3. **Install Jenkins using Helm:**
+Go to the website where the IP is the external-service-IP of the 'Jenkins' service with port 8080
 
-    - First, add the Jenkins chart:
-      ```bash
-      helm repo add jenkins https://charts.jenkins.io
-      helm repo update
-      ```
+Login to jenkins using the username: 'admin' and the above password.
 
-    - Then, deploy Jenkins:
-      ```bash
-      helm install jenkins jenkins/jenkins
-      ```
+Install the suggested plugins and follow the given instructions.
+### Create credentials
+Click on "Manage Jenkins" on the left side. \
+Click on the "Credentials" section. \
+Click on "(global)" under Domain. \
+![plot](../images/jenkinscred.png)
+click +add credentials in blue in the top right corner and create username
+with password kind both for your git repo and dockerhub. \
+The description is then crucial for the definition of the pipeline.
 
-4. **Expose Jenkins as a LoadBalancer:**
-    ```bash
-    kubectl expose deployment jenkins --type=LoadBalancer --name=jenkins-lb --port=8080
-    ```
+### Install plugins
 
-5. **Access Jenkins:**
-    
-    - Get the external IP address of the Jenkins LoadBalancer:
-      ```bash
-      kubectl get svc jenkins-lb
-      ```
+![plot](../images/jenkinsplugin.png)
 
-    - Once the `EXTERNAL-IP` is assigned, visit `http://[EXTERNAL-IP]:8080` in your browser.
+Click on "Manage Jenkins" on the left side. \
+Click on the "Plugins" section. \
+Go to "Available plugins". \
+Search for: 'Blue Ocean', 'Docker plugin', 'Docker', 'Kubernetes plugin', 'Pipeline', 'Email plugin' \
+note that the multibranch workflow plugin is not supported anymore, and we now need to use the 
+'Multibranch Pipeline' job type.
 
-
-6. **Complete the Jenkins Setup:**
-
-    - Retrieve the Jenkins unlock key:
-      ```bash
-      kubectl get secret jenkins -o=jsonpath="{.data.jenkins-admin-password}" | base64 --decode
-      ```
-
-    - Install your desired plugins and finish the setup.
+### Create pipeline job
+In the Dashboard, click "+ New Item" \
+Select 'Multibranch Pipeline', give a name, and click 'ok'. \
+Give it a display name and description as you like. \
+Under 'Branch Sources' select git. \
+Enter this project url [repo](https://github.com/Guyashkenazi6/profileapp), and put the credentials we configured earlier.
+The pipeline will search for a file called "Jenkinsfile" that exists in the main branch in this repo
 
