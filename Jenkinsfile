@@ -73,9 +73,9 @@ spec:
                             sh '''
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                             helm package helmapp
-                            helm push helmapp-0.1.0.tgz  oci://registry-1.docker.io/milk49
-                            helm package helmdb
-                            helm push helmdb-0.1.0.tgz  oci://registry-1.docker.io/milk49
+                            helm push helmapp-0.1.0.tgz  oci://registry-1.docker.io/guyashkenazi
+                            helm package helmmongo
+                            helm push helmdb-0.1.0.tgz  oci://registry-1.docker.io/guyashkenazi
                             '''
                         }
                     }
