@@ -73,7 +73,7 @@ spec:
                             helm package helmapp
                             helm push helmapp-0.1.0.tgz  oci://registry-1.docker.io/guyashkenazi
                             helm package helmmongo
-                            helm push helmdb-0.1.0.tgz  oci://registry-1.docker.io/guyashkenazi
+                            helm push helmmongo-0.1.0.tgz  oci://registry-1.docker.io/guyashkenazi
                             '''
                         }
                     }
