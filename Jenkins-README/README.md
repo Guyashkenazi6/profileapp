@@ -51,6 +51,12 @@ Get the password:
 ```
 kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode
 ```
+
+Expose the Jenkins service to LoadBalancer:
+```
+kubectl patch svc myjenkins -p '{"spec": {"type": "LoadBalancer"}}'
+```
+
 Get the LoadBalancer ip:
 ```
 kubectl get svc --namespace=...('default' is the default namespace for the installation) 
