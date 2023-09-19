@@ -8,10 +8,8 @@ kind: Pod
 spec:
   containers:
   - name: dind
-    image: docker:dind
-    env:
-    - name: DOCKER_HOST
-      value: unix:///var/run/docker-dind.sock
+    image: drpsychick/dind-buildx-helm
+    alwaysPull: true
     securityContext:
       privileged: true
     volumeMounts:
