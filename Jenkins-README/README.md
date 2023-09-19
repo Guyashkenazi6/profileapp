@@ -39,12 +39,12 @@ jenkins:
 ```
 Install the official jenkins package with your values.yaml:
 ```
-helm install myjenkins jenkins/jenkins -f values.yaml
+helm install jenkins jenkins/jenkins -f values.yaml
 ```
 
 Install the official jenkins package:
 ```
-helm install myjenkins jenkins/jenkins
+helm install jenkins jenkins/jenkins
 ```
 
 Get the password:
