@@ -2,9 +2,9 @@ from flask import Flask, render_template
 from pymongo import MongoClient
 
 app = Flask(__name__)
-client = MongoClient('mongodb://mongodb.mongodb.svc.cluster.local:27017/') 
-db = client['data']
-links_collection = db['data']
+client = MongoClient('mongodb://mongodb.db.svc.cluster.local:27017/') 
+db = client['guy_data']
+links_collection = db['guy_data']
 
 # Define a custom filter to zip lists in the templateefaddav
 @app.template_filter('zip_lists')
