@@ -2,7 +2,10 @@ from flask import Flask, render_template
 from pymongo import MongoClient
 
 app = Flask(__name__)
-client = MongoClient('mongodb://mongodb.db.svc.cluster.local:27017/') 
+username = "root"
+password = "3yGWpZ7jeS"
+client = MongoClient(f'mongodb://{username}:{password}@34.78.116.136:27017/')
+# client = MongoClient('mongodb://mongodb.db.svc.cluster.local:27017/') 
 db = client['guy_data']
 links_collection = db['guy_data']
 
