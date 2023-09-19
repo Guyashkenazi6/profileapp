@@ -61,5 +61,3 @@ Each link is supplemented with an appropriate logo, fetched dynamically from Mon
 
 🌟 Star this repo if you found it useful! Feedback and PRs are welcomed.
 
-
-![plot](/images/ori.jpeg)
