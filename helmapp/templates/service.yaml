@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: main
+  name: guymain
 spec:
   selector:
-    app: main
+    app: guymain
   type: LoadBalancer
   ports:
-  - name: main
+  - name: guymain
     port: 5000
     targetPort: 5000
