@@ -65,5 +65,32 @@ spec:
                 }
             }
         }
+        stage('Build and push helm chart') {
+            steps {
+                container('dind') {
+                    script {
+                        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                            sh '''
+                            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                            helm package helmapp
+                            helm push helmapp-0.1.0.tgz  oci://registry-1.docker.io/milk49
+                            helm package helmdb
+                            helm push helmdb-0.1.0.tgz  oci://registry-1.docker.io/milk49
+                            '''
+                        }
+                    }
+                }
+            }
+       }
+    }
+ post {
+        failure {
+            emailext (
+                to: 'guy0204@gmail.com',
+                subject: "Failed: ${currentBuild.fullDisplayName}",
+                body: "The build failed. Please check the Jenkins build log for details.",
+                attachLog: true,
+            )
+        }
     }
 }
