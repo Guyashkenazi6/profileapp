@@ -102,3 +102,15 @@ Under 'Branch Sources' select git. \
 Enter this project url [repo](https://github.com/Guyashkenazi6/profileapp), and put the credentials we configured earlier.
 The pipeline will search for a file called "Jenkinsfile" that exists in the main branch in this repo
 
+
+
+### Delete everything
+See the namespace resources 
+```
+kubectl get all --namespace=jenkins 
+```
+
+Delete all the resources on the namespace using helm 
+```
+helm uninstall myjenkins -n jenkins
+
