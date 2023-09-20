@@ -2,23 +2,7 @@ pipeline {
     agent {
         kubernetes {
             label 'dind-agent'
-            yaml """
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: dind
-    image: drpsychick/dind-buildx-helm
-    alwaysPull: true
-    securityContext:
-      privileged: true
-    volumeMounts:
-    - mountPath: /var/run
-      name: docker-sock
-  volumes:
-  - name: docker-sock
-    emptyDir: {}
-"""
+            yamlFile 'agent.yaml'
         }
     }
     stages {
